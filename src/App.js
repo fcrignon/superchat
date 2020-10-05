@@ -3,27 +3,18 @@ import React, { useRef, useState } from "react";
 import "./App.css";
 
 import firebase from "firebase/app";
+import { firebaseConfig } from "./firebaseConfig.js";
 import "firebase/firestore";
 import "firebase/auth";
-import "firebase/analytics";
 
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 
-firebase.initializeApp({
-  apiKey: "AIzaSyC-hhGbFkVxcK-pOswNej40MbfFGeH7lqE",
-  authDomain: "superchat-21629.firebaseapp.com",
-  databaseURL: "https://superchat-21629.firebaseio.com",
-  projectId: "superchat-21629",
-  storageBucket: "superchat-21629.appspot.com",
-  messagingSenderId: "234108870993",
-  appId: "1:234108870993:web:ea950e8c6104b39395f370",
-  measurementId: "G-5CVD1WV4YH",
-});
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
 
 const auth = firebase.auth();
 const firestore = firebase.firestore();
-const analytics = firebase.analytics();
 
 function App() {
   const [user] = useAuthState(auth);
@@ -81,10 +72,9 @@ function ChatRoom() {
       uid,
       photoURL,
     });
-    setFormValue('');
-    dummy.current.scrollIntoView({ behavior: 'smooth' });
+    setFormValue("");
+    dummy.current.scrollIntoView({ behavior: "smooth" });
   };
-
 
   return (
     <>
@@ -108,7 +98,7 @@ function ChatRoom() {
 function ChatMessage(props) {
   const { text, uid, photoURL } = props.message;
 
-  const messageClass = uid === auth.currentUser.uid ? 'sent' : 'received';
+  const messageClass = uid === auth.currentUser.uid ? "sent" : "received";
 
   return (
     <div className={`message ${messageClass}`}>
