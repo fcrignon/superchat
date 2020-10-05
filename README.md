@@ -1,2 +1,7 @@
 # superchat
- simple react chat app
+ simple react chat app with firebase
+
+
+ from fireship.io
+
+ 
